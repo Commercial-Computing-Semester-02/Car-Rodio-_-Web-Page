@@ -1,7 +1,9 @@
+# Car Rodio.lk Web-Page
 <p align="center">
   <img src="1.png" height=400 width = 1000> 
 </p>
-# Car Rodio.lk Web-Page
+
+
 
 The web application is developed for advertising vehicle online. There are 3 main users in the system. These are seller, buyer and administrator. The all users need to register the system using registration form and once they registered, they can login to the system using the username and password. All sellers and administrators should have proper login to access the portal except buyers.
 The seller can add a vehicle advertisement by filling vehicle advertisement form provided by the system and that published advertisement goes to the administrator for verification. If the advertisement is accepting by administrator that advertisement is visible for the buyers and after verification seller can not update any information in the advertisement. If the advertisement rejects by the administrator, seller should notified with appropriate message. Seller can see the approved and published advertisements and details, all the advertisement and contact histories of buyers in his home page. Seller can also delete the added advertisement at any time.
