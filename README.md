@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="1.png" height=400 width = 800> 
+  <img src="1.png" height=200 width = 1000> 
 </p>
 # Car Rodio.lk Web-Page
 The web application is developed for advertising vehicle online. There are 3 main users in the system. These are seller, buyer and administrator. The all users need to register the system using registration form and once they registered, they can login to the system using the username and password. All sellers and administrators should have proper login to access the portal except buyers.
