@@ -9,8 +9,7 @@ The web application is developed for advertising vehicle online. There are 3 mai
 The seller can add a vehicle advertisement by filling vehicle advertisement form provided by the system and that published advertisement goes to the administrator for verification. If the advertisement is accepting by administrator that advertisement is visible for the buyers and after verification seller can not update any information in the advertisement. If the advertisement rejects by the administrator, seller should notified with appropriate message. Seller can see the approved and published advertisements and details, all the advertisement and contact histories of buyers in his home page. Seller can also delete the added advertisement at any time.
 In buyer’s home page it displays the approved vehicle advertisements added by the seller. The buyer can search the advertisement by model, sort by price, sort by mileage etc. If the buyer prefers for vehicle, they can contact the seller via the in-built email option of the portal or the chat space in the portal. When the buyer sends an email to seller, the seller receives the email notification. Buyer also can add his preferred vehicles to the portal and rate and comment the advertisements.
 Administrator can view user details and manage users. He has the ability to accept or reject the vehicle advertisement. Administrator can generate reports such as the highest reached advertisements, most engaged buyers, no of advertisements posted by sellers etc.
-All users can contact the Car Rodio institute using the querying form in the contact us page. (Vision, mission, offered services are include in the about us page)
-
+All users can contact the Car Rodio institute using the querying form in the contact us page.
 # Functional Requirements <br>
 
 ## • Select a user type
