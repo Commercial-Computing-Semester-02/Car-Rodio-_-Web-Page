@@ -8,14 +8,14 @@
 -- ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- Run this script
-CREATE TABLE users (
-  u_id int IDENTITY(1,1) PRIMARY KEY,
-  firstname varchar(100) NOT NULL,
-  lastname varchar(100) NOT NULL,
-  contact_number varchar(15) NOT NULL,
-  email varchar(30) NOT NULL,
-  password varchar(100) NOT NULL,
-  role varchar(10) NOT NULL
+--CREATE TABLE users (
+--  u_id int IDENTITY(1,1) PRIMARY KEY,
+--  firstname varchar(100) NOT NULL,
+ -- lastname varchar(100) NOT NULL,
+--  contact_number varchar(15) NOT NULL,
+--  email varchar(30) NOT NULL,
+--  password varchar(100) NOT NULL,
+--  role varchar(10) NOT NULL
 ) 
 -- 
 
