@@ -74,4 +74,9 @@ All users can contact the Car Rodio institute using the querying form in the con
 
 # Software Architecture of this Web application 
 
-<img src="1.png" width="1000" height="500"/>
+<img src="1.png" width="1000" height="600"/>
+
+
+## Supporting the project
+
+You may support this project via ❤️️ Chameera De Silva.[GitHub](https://github.com/Chameera-de)
