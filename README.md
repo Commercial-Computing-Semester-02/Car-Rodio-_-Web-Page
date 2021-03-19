@@ -84,10 +84,39 @@ All users can contact the Car Rodio institute using the querying form in the con
       <th align="left" width="150" style="width: 150px !important"> No</th>
       <th align="left" width="200" style="width: 200px !important">Development - Part</th>
       <th align="left" width="140" style="width: 140px !important">Technology</th>
-      <th align="left">Tags</th>
       <th align="left" width="140" style="width: 140px !important">IDE</th>
     </tr>
   </thead>
+  <tbody>
+  <tr>
+      <td>
+        1
+      </td>
+      <td>
+        <a href="">
+          <b>Frondend Development</b>
+        </a>
+      </td>
+      <td>
+        <a href="">
+          2
+        </a>
+        <a href="https://nbviewer.jupyter.org/github/trekhleb/machine-learning-experiments/blob/master/experiments/digits_recognition_mlp/digits_recognition_mlp.ipynb">
+          <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder"/>
+        </a>
+        <a href="https://colab.research.google.com/github/trekhleb/machine-learning-experiments/blob/master/experiments/digits_recognition_mlp/digits_recognition_mlp.ipynb">
+          <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/>
+        </a>
+      </td>
+      <td>
+        <code>MLP</code>
+      </td>
+      <td>
+        <a href="https://www.tensorflow.org/datasets/catalog/mnist">
+          MNIST
+        </a>
+      </td>
+    </tr>
 
 
 ## Supporting the project
