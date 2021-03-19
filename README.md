@@ -162,7 +162,7 @@ All users can contact the Car Rodio institute using the querying form in the con
         </td>
       </td>
       <td>
-        <code>SquelPro,Heroku</code>
+        <code>SquelPro,Heroku - Hosting</code>
       </td>
     </tr>
      <tr>
@@ -184,8 +184,27 @@ All users can contact the Car Rodio institute using the querying form in the con
         <code>SquelPro</code>
       </td>
     </tr>
+     <tr>
+      <td>
+        5
+      </td>
+      <td>
+        <a href="">
+          <b>Testing </b>
+        </a>
+      </td>
+      <td>
+        <a href="">
+          Selanium, SofiAI
+        </a>
+        </td>
+      </td>
+      <td>
+        <code>InteliJ- IDEA</code>
+      </td>
+    </tr>
 </table>
 
 ## Supporting the project
 
-You may support this project via ❤️️ Chameera De Silva.[GitHub](https://github.com/Chameera-de)
+You may support this project via ❤️️ Technophile_Sl.[GitHub](https://github.com/Chameera-de)
