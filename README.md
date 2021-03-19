@@ -171,25 +171,6 @@ All users can contact the Car Rodio institute using the querying form in the con
       </td>
       <td>
         <a href="">
-          <b></b>
-        </a>
-      </td>
-      <td>
-        <a href="">
-          MySQL
-        </a>
-        </td>
-      </td>
-      <td>
-        <code>SquelPro</code>
-      </td>
-    </tr>
-     <tr>
-      <td>
-        5
-      </td>
-      <td>
-        <a href="">
           <b>Testing </b>
         </a>
       </td>
