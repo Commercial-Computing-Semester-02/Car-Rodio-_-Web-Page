@@ -71,3 +71,7 @@ Administrator can generate reports such as the highest reached advertisements, m
 ## • Contact the Car Rodio institute
 
 All users can contact the Car Rodio institute using the querying form in the contact us page.
+
+#Software Architecture of this Web application.
+
+<img src="1.png" width="1000" height="500"/>
