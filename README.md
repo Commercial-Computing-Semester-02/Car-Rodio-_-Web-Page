@@ -76,6 +76,8 @@ All users can contact the Car Rodio institute using the querying form in the con
 
 <img src="1.png" width="1000" height="600"/>
 
+## Technology Stack 
+
 <table>
   <thead>
     <tr>
