@@ -99,7 +99,7 @@ All users can contact the Car Rodio institute using the querying form in the con
       </td>
       <td>
         <a href="">
-          2
+          ReactJS
         </a>
         </td>
       </td>
@@ -110,16 +110,16 @@ All users can contact the Car Rodio institute using the querying form in the con
   </tr>
   <tr>
       <td>
-        1
+        2
       </td>
       <td>
         <a href="">
-          <b>Frondend Development</b>
+          <b>Backend Development</b>
         </a>
       </td>
       <td>
         <a href="">
-          ReactJS
+          NodeJS,ExpressJS
         </a>
         </td>
       </td>
@@ -127,7 +127,25 @@ All users can contact the Car Rodio institute using the querying form in the con
         <code>Visual Studio Code</code>
       </td>
     </tr>
-
+ <tr>
+      <td>
+        3
+      </td>
+      <td>
+        <a href="">
+          <b>Data Science Development</b>
+        </a>
+      </td>
+      <td>
+        <a href="">
+          Python,pytorch & Chatterbot
+        </a>
+        </td>
+      </td>
+      <td>
+        <code>Pycharm</code>
+      </td>
+    </tr>
 </table>
 
 ## Supporting the project
