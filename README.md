@@ -76,6 +76,17 @@ All users can contact the Car Rodio institute using the querying form in the con
 
 <img src="1.png" width="1000" height="600"/>
 
+<table>
+  <thead>
+    <tr>
+      <th align="left" width="150" style="width: 150px !important"> </th>
+      <th align="left" width="200" style="width: 200px !important">Experiment</th>
+      <th align="left" width="140" style="width: 140px !important">Model demo & training</th>
+      <th align="left">Tags</th>
+      <th align="left" width="140" style="width: 140px !important">Dataset</th>
+    </tr>
+  </thead>
+
 
 ## Supporting the project
 
