@@ -101,23 +101,15 @@ All users can contact the Car Rodio institute using the querying form in the con
         <a href="">
           2
         </a>
-        <a href="https://nbviewer.jupyter.org/github/trekhleb/machine-learning-experiments/blob/master/experiments/digits_recognition_mlp/digits_recognition_mlp.ipynb">
-          <img src="https://mybinder.org/badge_logo.svg" alt="Open in Binder"/>
-        </a>
-        <a href="https://colab.research.google.com/github/trekhleb/machine-learning-experiments/blob/master/experiments/digits_recognition_mlp/digits_recognition_mlp.ipynb">
-          <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab"/>
-        </a>
+        </td>
       </td>
       <td>
-        <code>MLP</code>
+        <code>Visual Studio Code</code>
       </td>
-      <td>
-        <a href="https://www.tensorflow.org/datasets/catalog/mnist">
-          MNIST
-        </a>
-      </td>
+      
     </tr>
 
+</table>
 
 ## Supporting the project
 
