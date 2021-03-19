@@ -1,6 +1,6 @@
 # Car Rodio.lk Web-Page
 <p align="center">
-  <img src="1.png" height=400 width = 1000> 
+ <img src="1.gif" width="1000" height="400"/>
 </p>
 
 
