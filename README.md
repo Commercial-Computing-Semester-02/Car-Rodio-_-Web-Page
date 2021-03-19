@@ -81,14 +81,15 @@ All users can contact the Car Rodio institute using the querying form in the con
 <table>
   <thead>
     <tr>
-      <th align="left" width="150" style="width: 150px !important"> </th>
-      <th align="left" width="200" style="width: 200px !important">Experiment</th>
-      <th align="left" width="140" style="width: 140px !important">Model demo & training</th>
+      <th align="left" width="150" style="width: 150px !important"> No</th>
+      <th align="left" width="200" style="width: 200px !important">Development - Part</th>
+      <th align="left" width="140" style="width: 140px !important">Technology</th>
       <th align="left">Tags</th>
-      <th align="left" width="140" style="width: 140px !important">Dataset</th>
+      <th align="left" width="140" style="width: 140px !important">IDE</th>
     </tr>
   </thead>
-</table>
+
+
 ## Supporting the project
 
 You may support this project via ❤️️ Chameera De Silva.[GitHub](https://github.com/Chameera-de)
