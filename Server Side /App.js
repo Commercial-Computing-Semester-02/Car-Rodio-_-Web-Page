@@ -1,5 +1,5 @@
 /*
- * @Author: The-Court-Of-Owls
+ * @Author: Chameera De Silva
  */
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -9,6 +9,7 @@ const config = require('./common/environment.json')['local'];
 const chalk = require('chalk');
 
 const db = require('./config/connection');
+var conn = require('./common/database.json');
 const app = express();
 
 // swagger definition ========================================
@@ -55,15 +56,22 @@ app.use((req, res, next) => {
   next();
 });
 
-try {
-  db.authenticate();
-  console.log(chalk.bgGreen.black('Connection has been established successfully.'));
-} catch (error) {
-  console.error(chalk.bgRed.black('Unable to connect to the database:', error));
-}
+const connectingToTheDB = () => {
+  db
+    .authenticate()
+    .then((result) => {
+      console.log(chalk.bgGreen.black(`Database Connection has been established successfully with \'${conn.database}\'`));
+    })
+    .catch((error) => {
+      console.error(chalk.bgRed.black('Unable to connect to the database:', error));
+      console.log(`check your MySQL Connection username & password\nEntered username: \'${conn.user}\' password: \'${conn.password}\'\nCheck file -  common/database.json`)
+    });
+};
+
+connectingToTheDB();
+
 //image upload
 app.use("/images", express.static("images"));
-app.use("/post-images", express.static("post-images"));
 
 //Routes 
 var routes = require('./routes/route')(app);
@@ -76,7 +84,7 @@ var serverDateTime = new Date().toLocaleString('en-US', {
 const port = process.env.PORT || config.PORT;
 
 app.listen(port, () => {
-  console.log(chalk.bgWhite.black('\n====================================================================\n>>>           CAR RODIO API server start on port - ' + config.PORT + '           <<<\n===================================================================='));
+  console.log(chalk.bgWhite.black('\n====================================================================\n>>>           CAR RODIO API server start on port - ' + config.PORT + '          <<<\n===================================================================='));
   console.log(chalk.bold(chalk.white('> ')+' Date Time :' + serverDateTime+'\n'+chalk.white('> ')+' Access '+chalk.bgYellow.black(' SERVER ')+' - '+chalk.blue.underline('http://localhost:' + config.PORT +'/')+'\n'+chalk.white('> ')+' Access to API '+chalk.bgGreenBright.black(' DOCUMENTATION ')+' - '+chalk.blue.underline('http://localhost:' + config.PORT + '/api-docs/')));
   console.log(chalk.bgWhite.black('====================================================================\n'));
 });

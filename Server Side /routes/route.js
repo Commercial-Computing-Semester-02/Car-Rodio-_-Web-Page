@@ -10,4 +10,6 @@ module.exports = function (app) {
     });
 
     app.use(API_PREFIX + routeConstant.USER.PREFIX, require('./userRoute'));
+    app.use(API_PREFIX + routeConstant.ADVERTISTMENT.PREFIX, require('./advertistmentRoute'));
+    app.use(API_PREFIX + routeConstant.BRAND.PREFIX, require('./brandRotes'));
 }

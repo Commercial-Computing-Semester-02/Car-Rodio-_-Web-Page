@@ -1,7 +1,17 @@
+/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
+ * You may use, distribute and modify this code under the
+ * terms of the XYZ license, which unfortunately won't be
+ * written for another century.
+ *
+ * You should have received a copy of the XYZ license with
+ * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
+ */
+
 import { useState } from "react"
 import { authenticationService } from "../../Backend Services/UserService"
 import Swal from 'sweetalert2'
 import { useHistory } from "react-router-dom"
+import jwt_decode from "jwt-decode";
 
 const Login = () => {
 
@@ -33,7 +43,11 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 2500
             })
-            history.push("/")
+            if(jwt_decode(localStorage.getItem('currentUser')).role == "Admin"){
+                history.push("/admin")
+            }else{
+                history.push("/")
+            }
         })
         .catch(error => {
             Swal.fire({
@@ -91,3 +105,4 @@ const Login = () => {
 }
 
 export default Login
+

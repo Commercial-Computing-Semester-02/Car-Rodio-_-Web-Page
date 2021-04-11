@@ -14,4 +14,18 @@ module.exports = {
         LOGIN: "/login",
     },
 
+    ADVERTISTMENT: {
+        PREFIX: '/advertistments',
+        SINGLE_ITEM: "/advertistment/:id",
+        UPLOAD: "/upload/:adId",
+        SEARCH: "/search",
+        GET_IMAGES: "/get-images/:adId",
+        GET_ADS_WITH_SINGLE_IMAGE: "/get-ads-image"
+    },
+
+    BRAND: {
+        PREFIX: '/brands',
+        SINGLE_ITEM: "/brand/:id",
+    },
+
 }

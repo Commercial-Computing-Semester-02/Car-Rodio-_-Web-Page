@@ -1,3 +1,11 @@
+/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
+ * You may use, distribute and modify this code under the
+ * terms of the XYZ license, which unfortunately won't be
+ * written for another century.
+ *
+ * You should have received a copy of the XYZ license with
+ * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
+ */
 import map from '../../assets/map.jpg'
 
 const contactus = () => {
@@ -5,12 +13,11 @@ const contactus = () => {
 
     const handleSubmit = (event) =>{
         event.preventDefault()
-        console.log(event.target)
     }
 
     return(
         <div class="container mb-5 slide">
-            <div style={{textAlign:"center"}}>
+            <div style={{textAlign:"center", marginTop: "5em"}}>
                 <h2>Contact Us</h2>
                 <p>Swing by for a cup of coffee, or leave us a message:</p>
             </div>

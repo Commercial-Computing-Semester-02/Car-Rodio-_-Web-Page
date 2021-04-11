@@ -20,7 +20,8 @@ const User = db.define('user', {
 module.exports = User;
 
 //   `u_id` int(11) NOT NULL AUTO_INCREMENT,
-//   `name` varchar(15) NOT NULL,
+//    firstname: DataTypes.STRING,
+//    lastname: DataTypes.STRING,
 //   `delivery_access` varchar(15) NOT NULL,
 //   `contact_number` varchar(15) NOT NULL,
 //   `email` varchar(30) NOT NULL,

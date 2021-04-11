@@ -1,3 +1,11 @@
+/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
+ * You may use, distribute and modify this code under the
+ * terms of the XYZ license, which unfortunately won't be
+ * written for another century.
+ *
+ * You should have received a copy of the XYZ license with
+ * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
+ */
 import image1 from '../../assets/5.png'
 import image2 from '../../assets/6.png'
 
@@ -248,29 +256,29 @@ const aboutus = () => {
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400" height="300"/>
-                        <p><strong>Paul Grey</strong></p>
+                        <p><strong>Chameera De Silva</strong></p>
                         <p>CHEIF EXECUTIVE OFFICER</p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400px" height="300px"/>
-                        <p><strong>Patricia Moran</strong></p>
+                        <p><strong>Dulan Neelaka</strong></p>
                         <p>CHEIF LEGAL OFFICER</p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400" height="300"/>
-                        <p><strong>Diana Wills</strong></p>
-                        <p>CHIEF CONVERSION OFFICER</p>
+                        <p><strong>Sam Venojan</strong></p>
+                        <p>MARKETING MANAGER</p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400" height="300"/>
-                        <p><strong>Diana Wills</strong></p>
-                        <p>CHIEF CONVERSION OFFICER</p>
+                        <p><strong>Randika De Silva</strong></p>
+                        <p>FINANCE MANAGER</p>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,10 @@
 // Model imports
 const ResponseService = require('./ResponseService'); // Response service
+const Types = require('./Types');
 const User = require("../models/user"); // User model
+const Advertistment = require("../models/advertistment");
+const AdvertistmentImage = require("../models/advertistmentImage");
+const Brand = require("../models/brand");
 
 // Return model by type
 function getModelByType(type) {
@@ -8,16 +12,21 @@ function getModelByType(type) {
     switch (type) {
         case Types.USER:
             return User;
+        case Types.ADVERTISTMENT:
+            return Advertistment;
+        case Types.ADVERTISTMENTIMAGE:
+            return AdvertistmentImage;
+        case Types.BRAND:
+            return Brand;
     }
 }
-
 
 // Create
 exports.create = function (val, type, res) {
     const model = getModelByType(type);
     model.create(val)
         .then((confirm) => {
-            ResponseService.generalPayloadResponse(null, { addedId: confirm.null }, res);
+            ResponseService.generalPayloadResponse(null, { addedId: confirm.dataValues.id }, res);
         }).catch(err => ResponseService.generalResponse(err, res));
 }
 
@@ -29,7 +38,6 @@ exports.deleteById = function (id, type, res) {
             ResponseService.generalPayloadResponse(null, posts, res);
         })
         .catch(err => ResponseService.generalPayloadResponse(err, null, res));
-
 }
 
 // Read all
@@ -52,5 +60,14 @@ exports.getById = function (id, type, res) {
             else ResponseService.generalPayloadResponse(null, post, res, 404, "No record Found");
         })
         .catch(err => ResponseService.generalPayloadResponse(err, null, res));
+}
 
+// Update one by ID
+exports.updateById = function (val, id, type, res) {
+    const model = getModelByType(type);
+    model.update(val, { where: { id: id } })
+        .then(rowsUpdated => {
+            ResponseService.generalPayloadResponse(null, rowsUpdated, res);
+        })
+        .catch(err => ResponseService.generalPayloadResponse(err, null, res));
 }

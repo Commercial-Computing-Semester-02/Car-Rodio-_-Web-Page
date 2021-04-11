@@ -1,3 +1,12 @@
+/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
+ * You may use, distribute and modify this code under the
+ * terms of the XYZ license, which unfortunately won't be
+ * written for another century.
+ *
+ * You should have received a copy of the XYZ license with
+ * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
+ */
+
 import googleplay from "../../assets/googleplay.png"
 import appstore from "../../assets/appstore.png"
 
@@ -5,10 +14,10 @@ const Footer = () => {
 
     return (
         <section id="footer">
+            <a href="#" title="To Top">
+                    <h2 class="text-white text-right mr-3">GO TO TOP <i class="fas fa-level-up-alt"></i></h2>
+            </a>
             <div class="container">
-                <a href="#" title="To Top">
-                    <h2 class="text-white text-center"><i class="fas fa-level-up-alt"> GO TO TOP</i></h2>
-                </a>
                 <div class="row text-center text-xs-center text-sm-left text-md-left">
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <h5 class="display-4">Car Rodio</h5>

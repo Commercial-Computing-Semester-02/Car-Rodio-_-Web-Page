@@ -1,3 +1,11 @@
+/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
+ * You may use, distribute and modify this code under the
+ * terms of the XYZ license, which unfortunately won't be
+ * written for another century.
+ *
+ * You should have received a copy of the XYZ license with
+ * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
+ */
 
 const bcrypt = require("bcryptjs");//password encript module
 const jwt = require("jsonwebtoken");
@@ -6,7 +14,7 @@ const keys = require("../config/keys");
 const ResponseService = require('../common/ResponseService'); // Response service
 const User = require('../models/user'); // User model
 
-// signUp
+// SignUp
 exports.signUp = function (req, res) {
     var validEmailRegex = RegExp(
         /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -63,6 +71,8 @@ exports.signUp = function (req, res) {
                                                 lastname: user.lastname,
                                                 email: user.email,
                                                 password: user.password,
+                                                role: user.role,
+                                                contact_number: user.contact_number
                                             }; //create jwt payload
                                         //sign token
                                         jwt.sign(
@@ -109,6 +119,8 @@ exports.logIn = function (req, res) {
                             lastname: user.lastname,
                             email: user.email,
                             password: user.password,
+                            role: user.role,
+                            contact_number: user.contact_number
                         }; //create jwt payload
 
                         //sign token
