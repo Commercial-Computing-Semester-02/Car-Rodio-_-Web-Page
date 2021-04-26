@@ -10,7 +10,7 @@ const PublishAds = () => {
 
   let history = useHistory()
   const {posts} = postService.GetPostsList()
-
+console.log(posts)
   const [showAddPost, setShowAddPost] = useState(false)
   const [showDeletePost, setShowDeletePost] = useState(false)
   const [showEditPost, setShowEditPost] = useState(false)

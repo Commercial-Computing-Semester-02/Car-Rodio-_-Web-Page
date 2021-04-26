@@ -1,29 +1,23 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
 import { useState } from "react"
 import { postService } from "../../Backend Services/PostService"
 import image from '../../assets/img1.jpg'
+import ad from '../../assets/ad.png'
+import { useHistory } from "react-router-dom";
 
 const CarLayout = () => {
 
+    let history = useHistory()
     const {posts} = postService.GetPostsWithImages()
     const {brands} = postService.GetBrands()
 
-    console.log(posts)
-
     const [postDetails, setPostDetails] = useState({
-        price: '',
+        price1: 0,
+        price2: 0,
         model: '',
         colour: '',
-        years: '',
+        year: '',
         fuel: '',
-        miles: '',
+        miles: 0,
         conditions: '',
         transmission: '',
         brand: '',
@@ -31,67 +25,105 @@ const CarLayout = () => {
         city: '',
     })
 
+    const handleChange = (event) => {
+        let nam = event.target.name
+        let val = event.target.value
+
+        setPostDetails({
+            ...postDetails,
+            [nam]: val
+        })
+    }
+
+    
+    function DetailView(id){
+        history.push('/cardetails/'+id)
+    }
+
     return(
         <div class="row">
 
             <div class="col-sm-3" style={{height: "auto", bgColor: "#98AFC7"}}>
                 
                 <form>
-                    <div class="container-fluid">
+                    <div class="container-fluid card shadow">
 
                         <h2 class="text-dark text-left">Filters <i class="fas fa-filter"></i></h2>
 
-                        Price <input id="price" type="range" data-slider-min="0" data-slider-max="100" data-slider-step="1" />
-                        
-                        Model <input type="text" name="model"  required />
-                        Colour <input type="text" name="colour"  required />
-                        Year <input type="text"  name="years"  required />
+                        Price 
+                        <div class="row">
+                            <input type="text" placeholder="Minimum Price" name="price1" class="col-sm-11 m-3" onChange={handleChange} required />
+                            <input type="text" placeholder="Maximum Price" name="price2" class="col-sm-11 m-3" onChange={handleChange} required />
+                        </div>
+                        Model <input type="text" placeholder="Enter Model" name="model" onChange={handleChange} required />
+                        Colour <input type="text" placeholder="Enter Colour" name="colour" onChange={handleChange} required />
+                        Year <input type="text" placeholder="Enter Year" name="year" onChange={handleChange} required />
 
-                        Miles <input id="miles" type="range" data-slider-min="0" data-slider-max="100" data-slider-step="1" />
+                        Miles <input type="text"  name="miles" onChange={handleChange} required />
                         
                         Fuel
-                        <select name="fuel">
+                        <select name="fuel" onChange={handleChange}>
+                            <option value="">None</option>
                             <option value="Petrol">Petrol</option>
                             <option value="Disel">Disel</option>
                             <option value="Electric">Electric</option>
                             <option value="Hybrid">Hybrid</option>
                         </select>
                         Condition
-                        <select name="conditions">
+                        <select name="conditions" onChange={handleChange}>
+                            <option value="">None</option>
                             <option value="Brand">Brand New</option>
                             <option value="Used">Used</option>
                         </select>
                         Transmission
-                        <select name="transmission">
+                        <select name="transmission" onChange={handleChange}>
+                            <option value="">None</option>
                             <option value="Manual">Manual</option>
                             <option value="Auto">Auto</option>
                         </select>
                         Brand
-                        <select name="brand">
+                        <select name="brand" onChange={handleChange}>
+                            <option value="">None</option>
                             {brands.map((item, index) => {
                                 return (
-                                    <option value={item.brand_name}>{item.brand_name}</option>
+                                    <option value={item.name}>{item.name}</option>
                                 )
                             })}
                         </select>
                     
-                        Region <input type="text" name="region"  required />
-                        City <input type="text" name="city"  required />
+                        Region <input type="text" name="region" onChange={handleChange} required />
+                        City <input type="text" name="city" onChange={handleChange} required />
                     </div>
                 </form>
 
+                <div class="container-fluid card shadow">
+                    <img src={ad} class="card"/>
+                </div>
+
             </div>
 
-            <div class="row col-sm-9" style={{position: "absolute", marginLeft: "300px"}}>
+            <div class="row col-sm-9" style={{position: "absolute", marginLeft: "320px"}}>
                 {
-                    posts.map((item, index) => {
-                        return item.adDetails.approved == 1 && item.adDetails.rejected == 0 ?
+                    posts.filter(
+                        item=>
+                        (postDetails.fuel == item.adDetails.fuel || postDetails.fuel == '') &&
+                        (postDetails.conditions == item.adDetails.conditions || postDetails.conditions == '') &&
+                        (postDetails.transmission == item.adDetails.transmission || postDetails.transmission == '') &&
+                        ((postDetails.price1 <= item.adDetails.price) && (postDetails.price2 >= item.adDetails.price) || postDetails.price1==0 || postDetails.price2 ==0) &&
+                        (item.adDetails.colour.toLowerCase().includes(postDetails.colour.toLowerCase())  || postDetails.colour == '') &&
+                        (item.adDetails.model.toLowerCase().includes(postDetails.model.toLowerCase())  || postDetails.model == '') &&
+                        (item.adDetails.year.includes(postDetails.year)  || postDetails.year == '') &&
+                        (item.adDetails.region.toLowerCase().includes(postDetails.region.toLowerCase())  || postDetails.region == '') &&
+                        (item.adDetails.city.toLowerCase().includes(postDetails.city.toLowerCase())  || postDetails.city == '') &&
+                        (item.adDetails.miles <= postDetails.miles || postDetails.miles == 0)
+                    ).map((filteredItem, index) => {
+                        return filteredItem.adDetails.approved == 1 && filteredItem.adDetails.rejected == 0 ?
                         
                             <div class="col-sm-3" style={{width: "18rem", margin: "45px"}}>
-                            <img class="card-img-top" src={item.image == null ? image : item.image} alt="Card image cap"/>
+                            <img class="card-img-top" src={filteredItem.image == null ? image : filteredItem.image} alt="Card image cap"/>
                                 <div class="card-body">
-                                    <h5 class="card-title">{item.adDetails.title}</h5>
-                                    <button href="#" class="btnContact">View</button>
+                                    <h5 class="card-title">{filteredItem.adDetails.title}</h5>
+                                    <button class="btnContact" onClick={()=>DetailView(filteredItem.adDetails.id)}>View</button>
                                 </div>
                             </div>
                         :

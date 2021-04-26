@@ -11,5 +11,7 @@ module.exports = function (app) {
 
     app.use(API_PREFIX + routeConstant.USER.PREFIX, require('./userRoute'));
     app.use(API_PREFIX + routeConstant.ADVERTISTMENT.PREFIX, require('./advertistmentRoute'));
-    app.use(API_PREFIX + routeConstant.BRAND.PREFIX, require('./brandRotes'));
+    app.use(API_PREFIX + routeConstant.BRAND.PREFIX, require('./brandRoutes'));
+    app.use(API_PREFIX + routeConstant.COMMENT.PREFIX, require('./commentRoutes'));
+    app.use(API_PREFIX + routeConstant.RATING.PREFIX, require('./ratingRoutes'));
 }

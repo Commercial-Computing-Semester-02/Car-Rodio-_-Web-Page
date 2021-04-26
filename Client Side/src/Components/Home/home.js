@@ -1,11 +1,3 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
 import image1 from '../../assets/img1.jpg'
 import image2 from '../../assets/img2.jpg'
 import { Col, Row, Container } from 'react-bootstrap'
@@ -24,8 +16,16 @@ const Home = (props) => {
 
     let history = useHistory()
 
-    const auth = () =>{
+    const auth = () => {
         history.push("/services")
+    }
+
+    function openForm() {
+        document.getElementById("myForm").style.display = "block";
+    }
+
+    function closeForm() {
+        document.getElementById("myForm").style.display = "none";
     }
 
     return (
@@ -38,13 +38,13 @@ const Home = (props) => {
                     </ol>
                     <div class="carousel-inner" role="listbox">
 
-                        <div class="carousel-item active" style={{ backgroundImage: "url("+image1+")" }}>
+                        <div class="carousel-item active" style={{ backgroundImage: "url(" + image1 + ")" }}>
                             <div class="carousel-caption d-none d-md-block">
                                 <h3 class="display-4">The cars we drive say a lot about us.....</h3>
                             </div>
                         </div>
 
-                        <div class="carousel-item" style={{ backgroundImage: "url("+image2+")" }}>
+                        <div class="carousel-item" style={{ backgroundImage: "url(" + image2 + ")" }}>
                             <div class="carousel-caption d-none d-md-block">
                                 <h3 class="display-4">Drop a gear & disappear..</h3>
                             </div>
@@ -65,37 +65,37 @@ const Home = (props) => {
             <div id="services" class="container-fluid text-center bg-grey slide">
                 <div class="row slide">
                     <div class="col-sm-3">
-                        <img src={toyota}/>
+                        <img src={toyota} />
                         <p>Toyota</p>
                     </div>
                     <div class="col-sm-3">
-                        <img src={nissan}/>
+                        <img src={nissan} />
                         <p>Nissan</p>
                     </div>
                     <div class="col-sm-3">
-                        <img src={honda}/>
+                        <img src={honda} />
                         <p>Honda</p>
                     </div>
                     <div class="col-sm-3">
-                        <img src={ford}/>
+                        <img src={ford} />
                         <p>Ford</p>
                     </div>
                 </div>
                 <div class="row slide">
                     <div class="col-sm-3">
-                        <img src={bmw}/>
+                        <img src={bmw} />
                         <p>BMW</p>
                     </div>
                     <div class="col-sm-3">
-                        <img src={land}/>
+                        <img src={land} />
                         <p>Land Rover</p>
                     </div>
                     <div class="col-sm-3">
-                        <img src={mit}/>
+                        <img src={mit} />
                         <p>Mitsubishi</p>
                     </div>
                     <div class="col-sm-3">
-                        <img src={volks}/>
+                        <img src={volks} />
                         <p>Volkswagan</p>
                     </div>
                 </div>
@@ -104,7 +104,7 @@ const Home = (props) => {
 
             <div class="slide">
                 <Container>
-                <hr class="featurette-divider"/>
+                    <hr class="featurette-divider" />
                     <Row>
                         <Col>
                             <h4 class="display-2 mt-4">
@@ -113,10 +113,25 @@ const Home = (props) => {
                                 ADD HERE
                             </h4>
                         </Col>
+
                     </Row>
-                    <hr class="featurette-divider"/>
+                    <hr class="featurette-divider" />
                 </Container>
             </div>
+
+            <button class="open-button" onClick={openForm}>Chat</button>
+            <div class="chat-popup" id="myForm">
+                <form class="form-container">
+                    <h1>Chat</h1>
+
+                    <label for="msg"><b>Message</b></label>
+                    <textarea placeholder="Type message.." name="msg" required></textarea>
+
+                    <button type="submit" class="btn">Send</button>
+                    <button type="button" class="btn cancel" onClick={closeForm}>Close</button>
+                </form>
+            </div>
+
         </>
     )
 }

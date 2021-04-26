@@ -1,30 +1,22 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
-
 import React, { useState } from 'react';
 import { authenticationService } from '../Backend Services/UserService';
 import Footer from './Common/footer';
-import { Modal } from 'react-bootstrap';
+import { Button, Modal, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import jwt_decode from "jwt-decode";
+import Swal from 'sweetalert2'
 
-function LayOut({page}){
+
+function LayOut({ page }) {
 
     let role = false
     let user = { name: "Guest" }
 
-    if(authenticationService.currentUserValue==null){
+    if (authenticationService.currentUserValue == null) {
         role = false
-    }else{
+    } else {
         role = true
         user = jwt_decode(localStorage.getItem('currentUser'))
     }
-    
     console.log(user)
 
     const [profileModal, setProfileModal] = useState(false)
@@ -32,7 +24,51 @@ function LayOut({page}){
         setProfileModal(!profileModal)
     }
 
-    return(
+    const [userDetails, setUserDetails] = useState({
+        current: '',
+        new: '',
+        confirm: ''
+    })
+
+    const handleChange = (event) => {
+        let nam = event.target.name
+        let val = event.target.value
+
+        setUserDetails({
+            ...userDetails,
+            [nam]: val
+        })
+    }
+
+    const onSubmit = (event) => {
+        event.preventDefault()
+        authenticationService.ChangePassword(userDetails)
+            .then(response => {
+                Swal.fire({
+                    position: 'middle',
+                    icon: 'warning',
+                    title: "Successfully Changed",
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then(function () {
+                    window.location.reload(true);
+                })
+            })
+            .catch(error => {
+                Swal.fire({
+                    position: 'middle',
+                    icon: 'warning',
+                    title: "Something wrong !",
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then(function () {
+                    window.location.reload(true);
+                })
+            })
+    }
+
+
+    return (
         <>
             <div>
                 <nav class="navbar navbar-expand-lg fixed-top baseColor">
@@ -63,6 +99,21 @@ function LayOut({page}){
                         </ul>
                     </div>
                     <ul class="navbar-nav ml-auto">
+                        {role && <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-bottom">Notifications</Tooltip>}>
+                            <span className="d-inline-block">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                                </li>
+                            </span>
+                        </OverlayTrigger>}
+                        {role && <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-bottom">Wishlist</Tooltip>}>
+                            <span className="d-inline-block">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"><i class="fas fa-heart"></i></a>
+                                </li>
+                            </span>
+                        </OverlayTrigger>}
+
                         {role && <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
@@ -71,22 +122,22 @@ function LayOut({page}){
                             </div>
                         </li>}
                         {!role && <a type="button" class="btn btn-outline-info" href="/auth">Log In</a>}
-                        {!role && <a type="button" class="btn btn-outline-success ml-3 text-dark" href="/services">Post Your Add</a>}
+                        {!role && <a type="button" class="btn btn-outline-success ml-3 text-dark" href="/services">Post Your Ad</a>}
                     </ul>
                 </nav>
 
                 <div id="layoutSidenav_content">
-                    <main style={{marginTop: "3rem"}}>
+                    <main style={{ marginTop: "3rem" }}>
                         {page}
-                        <Footer/>
+                        <Footer />
                     </main>
-                </div>     
-        </div>
+                </div>
+            </div>
 
-        <Modal show={profileModal} style={{height: "100vh"}} >
-            <Modal.Body style={{marginLeft: "26px", height: "104vh"}} >
+            <Modal show={profileModal} style={{ height: "100vh" }} >
+                <Modal.Body style={{ marginLeft: "26px", height: "104vh" }} >
                     <div class=" row d-flex justify-content-center" >
-                        <div class="row m-l-0 m-r-0" style={{height: "70vh", borderRadius: "10px"}}>
+                        <div class="row m-l-0 m-r-0" style={{ height: "70vh", borderRadius: "10px" }}>
                             <div class="col-sm-4 bg-dark">
                                 <div class="card-block text-white">
                                     <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image" /> </div>
@@ -107,36 +158,36 @@ function LayOut({page}){
                                             <h6 class="text-muted">{user.firstname + " " + user.lastname}</h6>
                                         </div>
                                     </div>
-                                    <hr/>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <p class="m-b-10 f-w-600">Email</p>
                                             <h6 class="text-muted">{user.email}</h6>
                                         </div>
                                     </div>
-                                    <hr/>
+                                    <hr />
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <p class="m-b-10 f-w-600">Contact Number</p>
                                             <h6 class="text-muted">{user.contact_number}</h6>
                                         </div>
                                     </div>
-                                    <hr/>
+                                    <hr />
                                     <form>
-                                        Current Password: <input type="text"/>
-                                        New Password: <input type="text"/>
-                                        Confirm Password: <input type="text"/>
+                                        Current Password: <input type="password" name="current" onChange={handleChange} />
+                                        New Password: <input type="password" name="new" onChange={handleChange} />
+                                        Confirm Password: <input type="password" name="confirm" onChange={handleChange} />
                                     </form>
                                 </div>
-                                <button href="#" class="btnContact mb-3" onClick={handleProfile}>Submit</button>
+                                <button href="#" class="btnContact mb-3" onClick={onSubmit}>Submit</button>
                                 <button href="#" class="btnContact" onClick={handleProfile}>Cancel</button>
                             </div>
                         </div>
                     </div>
-                    
-            </Modal.Body>
-        </Modal>
-    </>
+
+                </Modal.Body>
+            </Modal>
+        </>
     )
 }
 

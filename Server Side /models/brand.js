@@ -8,7 +8,7 @@ const Brand = db.define('brand', {
         primaryKey: true,
         autoIncrement: true
     },
-    brand_name: DataTypes.STRING,
+    name: DataTypes.STRING,
 });
 
 module.exports = Brand;

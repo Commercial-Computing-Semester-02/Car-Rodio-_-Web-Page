@@ -1,11 +1,3 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
 import image1 from '../../assets/5.png'
 import image2 from '../../assets/6.png'
 
@@ -251,34 +243,34 @@ const aboutus = () => {
 
 
         <div id="portfolio" class="container-fluid text-center slide">
-            <h2>MEET THE TEAM</h2><br/>
+            <h2>MEET THE PROJECT TEAM</h2><br/>
             <div class="row text-center slide">
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400" height="300"/>
                         <p><strong>Chameera De Silva</strong></p>
-                        <p>CHEIF EXECUTIVE OFFICER</p>
+                        <p>DevOps Engineer</p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400px" height="300px"/>
-                        <p><strong>Dulan Neelaka</strong></p>
-                        <p>CHEIF LEGAL OFFICER</p>
+                        <p><strong>Dulan Ranasinghe</strong></p>
+                        <p>Business Analyst</p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400" height="300"/>
                         <p><strong>Sam Venojan</strong></p>
-                        <p>MARKETING MANAGER</p>
+                        <p>QA Engineer</p>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src={image2} width="400" height="300"/>
                         <p><strong>Randika De Silva</strong></p>
-                        <p>FINANCE MANAGER</p>
+                        <p>Project Manager</p>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ function PostForm({ uid }) {
 
         model: '',
         colour: '',
-        years: '',
+        year: '',
         fuel: 'Petrol',
         miles: '',
         conditions: 'Used',
@@ -30,8 +30,9 @@ function PostForm({ uid }) {
         city: '',
         address: '',
 
-        seller_name: '',
+        name: '',
         contact: '',
+        email: '',
         file: ''
     };
 
@@ -44,7 +45,7 @@ function PostForm({ uid }) {
             .required('Price is required'),
         model: Yup.string()
             .required('Model is required'),
-        years: Yup.string()
+        year: Yup.string()
             .required('Year is required'),
         colour: Yup.string()
             .required('Colour is required'),
@@ -64,11 +65,14 @@ function PostForm({ uid }) {
             .required('City is required'),
         address: Yup.string()
             .required('Address is required'),
-        seller_name: Yup.string()
+        name: Yup.string()
             .required('Name is required'),
         contact: Yup.string()
             .required('contact is required'),
+        email: Yup.string()
+            .required('Email is required'),
     });
+    
 
     function onSubmit(fields, { setStatus, setSubmitting }) {
         setStatus()
@@ -115,10 +119,10 @@ function PostForm({ uid }) {
 
     useEffect(() => {
         if (!isAddMode) {
-            postService.GetPost(uid)
+            postService.GetPostForForm(uid)
                 .then(function(response){
                     const post = response.data.data
-                    const fields = ['title', 'price', 'description', 'model', 'colour', 'years', 'fuel', 'miles', 'conditions', 'transmission', 'region', 'city', 'address', 'seller_name', 'contact']
+                    const fields = ['title', 'price', 'description', 'model', 'colour', 'year', 'fuel', 'miles', 'conditions', 'transmission', 'region', 'city', 'address', 'name', 'contact', 'email']
                     fields.forEach(field => formikRef.current.setFieldValue(field, post[field], false))
                 })
         }
@@ -171,8 +175,8 @@ function PostForm({ uid }) {
                                 </div>
                                 <div className="form-group col-6">
                                     <label>Year</label>
-                                    <Field name="years" type="text" className={'form-control' + (errors.years && touched.years ? ' is-invalid' : '')} />
-                                    <ErrorMessage name="years" component="div" className="invalid-feedback" />
+                                    <Field name="year" type="text" className={'form-control' + (errors.year && touched.year ? ' is-invalid' : '')} />
+                                    <ErrorMessage name="year" component="div" className="invalid-feedback" />
                                 </div>
 
                             </div>
@@ -223,7 +227,7 @@ function PostForm({ uid }) {
                                     <Field name="brand" as="select" className={'form-control' + (errors.brand && touched.brand ? ' is-invalid' : '')}>
                                         {brands.map((item, index) => {
                                             return(
-                                                <option value={item.brand_name}>{item.brand_name}</option>
+                                                <option value={item.name}>{item.name}</option>
                                             )
                                         })}
                                     </Field>
@@ -269,14 +273,24 @@ function PostForm({ uid }) {
 
                                 <div className="form-group col-6">
                                     <label>Name</label>
-                                    <Field name="seller_name" type="text" className={'form-control' + (errors.seller_name && touched.seller_name ? ' is-invalid' : '')} />
-                                    <ErrorMessage name="seller_name" component="div" className="invalid-feedback" />
+                                    <Field name="name" type="text" className={'form-control' + (errors.name && touched.name ? ' is-invalid' : '')} />
+                                    <ErrorMessage name="name" component="div" className="invalid-feedback" />
                                 </div>
 
                                 <div className="form-group col-6">
                                     <label>Contact Number</label>
                                     <Field name="contact" type="text" className={'form-control' + (errors.contact && touched.contact ? ' is-invalid' : '')} />
                                     <ErrorMessage name="contact" component="div" className="invalid-feedback" />
+                                </div>
+
+                            </div>
+
+                            <div className="form-row">
+
+                                <div className="form-group col-12">
+                                    <label>Email</label>
+                                    <Field name="email" type="text" className={'form-control' + (errors.email && touched.email ? ' is-invalid' : '')} />
+                                    <ErrorMessage name="email" component="div" className="invalid-feedback" />
                                 </div>
 
                             </div>

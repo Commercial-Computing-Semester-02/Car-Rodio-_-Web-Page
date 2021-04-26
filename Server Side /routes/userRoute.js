@@ -6,7 +6,7 @@ const routeConstant = require('../common/route-constant');
 // CRUD Service
 const CRUD = require('../common/CRUD');
 
-const UseController = require('../controllers/userController');
+const UserController = require('../controllers/userController');
 
 // Create
 /**
@@ -38,7 +38,7 @@ router.post('/', (req, res) => CRUD.create(req.body, Types.USER, res));
  *       200:
  *         description: Responce Message
  */
-router.post(routeConstant.USER.SIGNUP, (req, res) => UseController.signUp(req, res));
+router.post(routeConstant.USER.SIGNUP, (req, res) => UserController.signUp(req, res));
 
 // Log in
 /**
@@ -54,7 +54,7 @@ router.post(routeConstant.USER.SIGNUP, (req, res) => UseController.signUp(req, r
  *       200:
  *         description: Responce Message
  */
-router.post(routeConstant.USER.LOGIN, (req, res) => UseController.logIn(req, res));
+router.post(routeConstant.USER.LOGIN, (req, res) => UserController.logIn(req, res));
 
 //get all
 /**
@@ -118,6 +118,22 @@ router.delete(routeConstant.USER.DELETE_USER, (req, res) => CRUD.deleteById(req.
  *       200:
  *         description: Responce Message
  */
-router.put(routeConstant.USER.PUT_USER, (req, res) => CRUD.updateById(req.body, Types.USER, res));
+router.put(routeConstant.USER.PUT_USER, (req, res) => CRUD.updateById(req.body, req.params.id,Types.USER, res));
+
+// reset password
+/**
+ * @swagger
+ * /api/users/user/reset-user-password/:id:
+ *   put:
+ *     description: reset password
+ *     tags:
+ *      - User
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: Responce Message
+ */
+ router.post(routeConstant.USER.RESET_PASSWORD, (req, res) => UserController.resetPassword(req, res));
 
 module.exports = router;

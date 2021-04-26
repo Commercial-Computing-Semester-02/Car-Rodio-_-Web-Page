@@ -1,8 +1,9 @@
 {
     "dialect": "mysql",
-    "user": "",
-    "database": "",
-    "password": "",
-    "host": "",
-    "port": "" 
+    "user": "b9cb43a530c64f",
+    "database": "heroku_ef4ddd34f9a506a",
+    "password": "6671a927",
+    "host": "us-cdbr-east-03.cleardb.com",
+    "port": "3306" 
 }
+

@@ -1,11 +1,3 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
 
 const bcrypt = require("bcryptjs");//password encript module
 const jwt = require("jsonwebtoken");
@@ -14,7 +6,7 @@ const keys = require("../config/keys");
 const ResponseService = require('../common/ResponseService'); // Response service
 const User = require('../models/user'); // User model
 
-// SignUp
+// signUp
 exports.signUp = function (req, res) {
     var validEmailRegex = RegExp(
         /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -107,6 +99,9 @@ exports.logIn = function (req, res) {
             if (!user) {
                 emailerr = "User not found";
                 return res.status(404).json(emailerr);
+            }else if(user.is_deleted){
+                blocked = "You account has been blocked by Admin !";
+                return res.status(404).json(blocked);
             } else {
                 //check password
                 bcrypt.compare(password, user.password).then((isMatch) => {
@@ -144,3 +139,53 @@ exports.logIn = function (req, res) {
         })
         .catch(err => ResponseService.generalPayloadResponse(err, null, res));
 }
+
+//reset password
+exports.resetPassword = (req, res) => {
+    const id = req.params.id;
+    const prevpassword = req.body.prevpassword;
+    const newpassword = req.body.newpassword;
+    const confirmpassword = req.body.confirmpassword;
+    if (confirmpassword !== newpassword) {
+        passerr = "Passwords must match!";
+        return ResponseService.generalResponse(passerr,res);
+    } else {
+        User.findOne({ where: { u_id: id } })
+            .then(user => {
+                if (!user) {
+                    return ResponseService.generalResponse(msgs.couldNotFind,res);
+                }else{
+                    bcrypt.compare(prevpassword, user.password, function(err, isMatch) {
+                        if (err) {
+                          return ResponseService.generalResponse(err,res);
+                        } else if (!isMatch) {
+                            return ResponseService.generalResponse("Password doesn't match!",res);
+                        } else {
+                            bcrypt.genSalt(10, (err, salt) => {
+                                bcrypt.hash(newpassword, salt, (err, hash) => {
+                                    if (err) throw err;
+                                    User.password = hash;
+                                    User.update(
+                                        {
+                                            password: hash,
+                                        },
+                                        { where: { u_id: id } }
+                                    ).then((user) => {
+                                        if (!user) {
+                                            err = "User not found";
+                                            return ResponseService.generalResponse(err,res);
+                                        }
+                                        else {
+                                            return ResponseService.generalResponse(null, res,  status = 200);
+                                        }
+                                    }).catch(err => ResponseService.generalPayloadResponse(err, null, res));
+                                })
+                            });
+                        }
+                      })
+                }
+            })
+            .catch(err => ResponseService.generalPayloadResponse(err, null, res));
+    }
+}
+

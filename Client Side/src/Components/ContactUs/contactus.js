@@ -1,11 +1,3 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
 import map from '../../assets/map.jpg'
 
 const contactus = () => {
@@ -33,11 +25,11 @@ const contactus = () => {
                         <label for="email">Email</label>
                         <input type="email" id="email" name="email" placeholder="Your email" />
 
-                        <label for="country">Country</label>
+                        <label for="country">City</label>
                         <select id="country" name="country">
-                            <option value="australia">Australia</option>
-                            <option value="canada">Canada</option>
-                            <option value="usa">USA</option>
+                            <option value="Colombo">Colmobo</option>
+                            <option value="Kaluthara">Kaluthara</option>
+                            <option value="Gampaha">Gampaha</option>
                         </select>
 
                         <label for="subject">Subject</label>

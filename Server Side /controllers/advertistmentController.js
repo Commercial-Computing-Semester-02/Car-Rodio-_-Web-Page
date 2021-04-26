@@ -23,14 +23,12 @@ exports.search = (searchQuery, res) => {
         .catch((err) => ResponseService.generalPayloadResponse(err, null, res));
 };
 
-// Search ADs
+// getting images for ad
 exports.getImagesById = (adId, res) => {
     AdvertistmentImage.findAll({ where: { adId: adId } })
         .then((images) => ResponseService.generalPayloadResponse(null, images, res))
         .catch((err) => ResponseService.generalPayloadResponse(err, null, res));
 };
-
-
 
 // getting ADs with a single image
 exports.getAllAdsImages = (req, res) => {
@@ -40,8 +38,7 @@ exports.getAllAdsImages = (req, res) => {
         // getting all images
         AdvertistmentImage.findAll()
         .then((images) => {
-
-            var adIds = [];
+            const adIds = [];
             const adImageObj = [];
             const adWithImageObj = [];
 
@@ -56,7 +53,6 @@ exports.getAllAdsImages = (req, res) => {
                 }
             });
 
-
             // maping single image with a AD
             result.forEach(element => { 
                 adImageObj.forEach(element2 => {
@@ -68,7 +64,54 @@ exports.getAllAdsImages = (req, res) => {
                     }
                 });
             });
-            
+
+            ResponseService.generalPayloadResponse(null, adWithImageObj, res)
+        })
+        .catch((err) => ResponseService.generalPayloadResponse(err, null, res));
+    })
+    .catch((err) => ResponseService.generalPayloadResponse(err, null, res));
+};
+
+// get search ADs with a single image
+exports.getAllSearchAdsImages = (searchQuery, res) => {
+    Advertistment.findAll({ where: searchQuery })
+    .then(result => {
+
+        // getting all images
+        AdvertistmentImage.findAll()
+        .then((images) => {
+            const adIds = [];
+            const adImageObj = [];
+            const adWithImageObj = [];
+
+            // getting images for one ad
+            images.forEach(element => {
+                if(!adIds.includes(element.adId)){
+                    adIds.push(element.adId);
+                    adImageObj.push({
+                        id: element.adId,
+                        path: element.path
+                    });
+                }
+            });
+
+            // maping single image with a AD
+            result.forEach(element => { 
+                adImageObj.forEach(element2 => {
+                    if(element.id === element2.id){
+                        adWithImageObj.push({
+                            adDetails: element,
+                            image: element2.path
+                        })
+                    }else{
+                        adWithImageObj.push({
+                            adDetails: element,
+                            image: null
+                        })
+                    }
+                });
+            });
+
             ResponseService.generalPayloadResponse(null, adWithImageObj, res)
         })
         .catch((err) => ResponseService.generalPayloadResponse(err, null, res));

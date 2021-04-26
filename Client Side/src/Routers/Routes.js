@@ -1,14 +1,6 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
 import React from "react";
 import { Switch } from "react-router-dom";
-import { Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Home from "../Components/Home/home";
 import LayOut from "../Components/layout";
 import Login from "../Components/Login/login";
@@ -25,6 +17,10 @@ import AdminAds from "../Components/Admin/AdminAds";
 import PendingAds from "../Components/Admin/PendingAds";
 import CarLayout from "../Components/Cars/carlayout";
 import RejectedAds from "../Components/Admin/RejectedAds";
+import CarDetails from "../Components/Cars/CarDetails";
+import UserHandeling from "../Components/Admin/UserHandeling";
+import News from "../Components/News/News";
+import Dashboard from "../Components/Admin/Dashboard";
 
 const history = createBrowserHistory();
 
@@ -46,12 +42,19 @@ export const Routes = () => {
             <PublicRoute exact path="/aboutus">
               <LayOut page={<Aboutus/>}/>
             </PublicRoute>
+            <PublicRoute exact path="/news">
+              <LayOut page={<News/>}/>
+            </PublicRoute>
             <PublicRoute exact path="/contactus">
               <LayOut page={<Contactus/>}/>
             </PublicRoute>
             <PublicRoute exact path="/cars">
               <LayOut page={<CarLayout/>}/>
             </PublicRoute>
+            <PublicRoute exact path="/cardetails/:id">
+              <LayOut page={<CarDetails/>}/>
+            </PublicRoute>
+
 
 
             <PrivateRoute exact path="/services">
@@ -59,7 +62,7 @@ export const Routes = () => {
             </PrivateRoute>
 
             <AdminRoute exact path="/admin">
-              <AdminLayout page={<></>}/>
+              <AdminLayout page={<Dashboard/>}/>
             </AdminRoute>
 
             <AdminRoute exact path="/publishads">
@@ -73,6 +76,11 @@ export const Routes = () => {
             <AdminRoute exact path="/rejectedads">
               <AdminLayout page={<RejectedAds/>}/>
             </AdminRoute>
+
+            <AdminRoute exact path="/userhandle">
+              <AdminLayout page={<UserHandeling/>}/>
+            </AdminRoute>
+
 
         </Switch>
     </BrowserRouter>

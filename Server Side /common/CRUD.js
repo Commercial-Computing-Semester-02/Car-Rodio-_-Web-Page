@@ -5,6 +5,8 @@ const User = require("../models/user"); // User model
 const Advertistment = require("../models/advertistment");
 const AdvertistmentImage = require("../models/advertistmentImage");
 const Brand = require("../models/brand");
+const Comment = require("../models/comment");
+const Rating = require("../models/rating");
 
 // Return model by type
 function getModelByType(type) {
@@ -18,6 +20,10 @@ function getModelByType(type) {
             return AdvertistmentImage;
         case Types.BRAND:
             return Brand;
+        case Types.COMMENT:
+            return Comment;
+        case Types.RATING:
+            return Rating;
     }
 }
 
@@ -71,3 +77,11 @@ exports.updateById = function (val, id, type, res) {
         })
         .catch(err => ResponseService.generalPayloadResponse(err, null, res));
 }
+
+// Search
+exports.search = (searchQuery, type, res) => {
+    const model = getModelByType(type);
+    model.findAll({ where: searchQuery })
+        .then((responce) => ResponseService.generalPayloadResponse(null, responce, res))
+        .catch((err) => ResponseService.generalPayloadResponse(err, null, res));
+};

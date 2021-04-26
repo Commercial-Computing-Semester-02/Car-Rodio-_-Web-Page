@@ -1,11 +1,3 @@
-/* Copyright (C) 2021 Chameera De Silva - All Rights Reserved
- * You may use, distribute and modify this code under the
- * terms of the XYZ license, which unfortunately won't be
- * written for another century.
- *
- * You should have received a copy of the XYZ license with
- * this file. If not, please write to:info.chameera.de@gmail.com , or visit :https://chameera-de.github.io
- */
 import API from './Base';
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from 'react';
@@ -15,12 +7,16 @@ export const postService = {
     GetAllPosts, // Get all posts, status = Approved(true) or status = Not Approved(false)
     GetPostsList, // Get list of posts according to the user, uid = someuserid
     GetPost, // Get particular post by it's id, pid = somepostid
+    GetPostForForm,
+    GetImages,
     DeletePost, // Delete a post, pid = somepostid
     CreatePost, // Create a post with fields values (initially status should be false)
     AcceptPost, // Change it's approved status to true
     RejectPost,
     SendImages,
-    GetPostsWithImages
+    GetPostsWithImages,
+    AddComment,
+    GetComments
 };
 
 
@@ -68,15 +64,16 @@ function CreatePost(fields){
         model: fields.model,
         brand: fields.brand,
         colour: fields.colour,
-        years: fields.years,
+        year: fields.year,
         fuel: fields.fuel,
         miles: fields.miles,
         description: fields.description,
         region: fields.region,
         city: fields.city,
         address: fields.address,
-        seller_name: fields.seller_name,
+        name: fields.name,
         contact: fields.contact,
+        email: fields.email,
         uid: jwt_decode(localStorage.getItem('currentUser')).u_id,
     },{})
 
@@ -84,14 +81,46 @@ function CreatePost(fields){
 }
 
 function GetPost(pid){
-    const request = API.get('/advertistments/advertistment/'+pid)
-    return request
+    const [state, setState] = useState({
+        post: []
+    })
+    useEffect(() => {
+        API.get('/advertistments/advertistment/'+pid)
+        .then(function(response){
+            setState({
+                post: response.data.data
+            }) 
+        })
+    },[])
+    return state
 }
 
-function GetPostsList(uid){
+function GetPostForForm(pid){
+    return API.get('/advertistments/advertistment/'+pid)
+}
+
+
+function GetImages(pid){
+    const [state, setState] = useState({
+        image: []
+    })
+    useEffect(() => {
+        API.get('/advertistments/get-images/'+pid)
+        .then(function(response){
+            setState({
+                image: response.data.data
+            }) 
+        })
+    },[])
+    return state
+}
+
+
+function GetPostsList(){
     const [state, setState] = useState({
         posts: []
     })
+    console.log(jwt_decode(localStorage.getItem('currentUser')).u_id)
     useEffect(() => {
         API.post('/advertistments/search',{
             uid: jwt_decode(localStorage.getItem('currentUser')).u_id
@@ -154,5 +183,31 @@ function RejectPost(id){
 
 function DeletePost(id){
     const request = API.delete('/advertistments/advertistment/'+id)
+    return request
+}
+
+
+function GetComments(postid){
+    const [state, setState] = useState({
+        comments: []
+    })
+    useEffect(() => {
+        API.get('/comments/get-for-post/'+postid)
+        .then(function(response){
+            setState({
+                comments: response.data.data
+            }) 
+        })
+    },[])
+    
+    return state 
+}
+
+function AddComment(message, postid){
+    const request = API.post('/comments',{
+        commentedby: jwt_decode(localStorage.getItem('currentUser')).u_id,
+        message: message,
+        postId: postid
+    })
     return request
 }

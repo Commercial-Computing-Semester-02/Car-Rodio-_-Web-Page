@@ -15,6 +15,7 @@ const User = db.define('user', {
     contact_number: DataTypes.STRING,
     password: DataTypes.STRING,
     role: DataTypes.STRING,
+    is_deleted: DataTypes.INTEGER,
 });
 
 module.exports = User;
@@ -27,3 +28,4 @@ module.exports = User;
 //   `email` varchar(30) NOT NULL,
 //   `password` varchar(15) NOT NULL,
 //   `role` varchar(10) NOT NULL,
+// is_deleted int int DEFAULT 0
