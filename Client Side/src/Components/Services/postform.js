@@ -261,7 +261,7 @@ function PostForm({ uid }) {
 
                             {isAddMode && <div className="form-row">
                                 <div className="form-group col-12">
-                                    <label>Images</label>
+                                    <label>Images(Max Up-to 5 Images,Please note; 1 Front,Back, Sides & Interrior)</label>
                                     <input id="file" name="file" className="form-control" type="file" onChange={(event) => {
                                         setFieldValue("file", event.currentTarget.files);
                                     }} multiple/>

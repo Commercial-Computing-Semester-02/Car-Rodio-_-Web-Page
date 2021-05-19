@@ -82,7 +82,7 @@ function CreatePost(fields){
 
 function GetPost(pid){
     const [state, setState] = useState({
-        post: []
+        post: null
     })
     useEffect(() => {
         API.get('/advertistments/advertistment/'+pid)

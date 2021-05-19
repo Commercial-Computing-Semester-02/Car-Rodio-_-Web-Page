@@ -1,0 +1,32 @@
+.search-icon {
+    font-size: 24px;
+    padding-left: 15px;
+    color: #98AFC7;
+    cursor: pointer;
+}
+
+.search-icon:hover {
+    color: black;
+}
+
+.side-buttons {
+    position: fixed;
+    right: 0; 
+    width: 72px;
+    background-color: #98AFC7;
+    color: white;
+    text-transform: capitalize;
+    border: none;
+    transition: 200ms all ease;
+}
+
+.side-buttons:hover {
+    background-color: #8297ad;
+    transform: scale(1.1);
+    transition: 200ms all ease;
+}
+
+.side-buttons:focus {
+    border: none;
+    outline: none;
+}

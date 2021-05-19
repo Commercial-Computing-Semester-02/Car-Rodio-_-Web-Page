@@ -12,7 +12,7 @@ const EmailForm = ({post}) => {
     
 
     function onSubmit(fields){
-        const mes = "Hi! This is " + fields.name +". " + fields.message + " Thank You ! Best Regardss"
+        const mes = "Hi! This is " + fields.name +". " + fields.message + " Thank You ! Best Regards"
         window.Email.send({
             Host : "smtp.elasticemail.com",
             Username : "startupwithbois@gmail.com",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import meter from '../../assets/meter.svg'
 import cal from '../../assets/cal.svg'
@@ -18,7 +18,15 @@ const CarDetails = () => {
     const {image} = postService.GetImages(id.id)
     const [rate, setRate] = useState(0)
 
+    const [fetchedPost, setFetchedPost] = useState(null)
+
+    useEffect(() => {
+        setFetchedPost(post)
+        window.scrollTo(0,0)
+    }, [post])
+
     return(
+        fetchedPost ? 
         <div class="container-fluid">
             <div class="row">
                 <div class="card col-sm-7 shadow mr-4">
@@ -104,6 +112,10 @@ const CarDetails = () => {
             <div class="row">
                 <CommentSection postid={id.id} uid={post.uid}/>
             </div>
+        </div>
+        :
+        <div class="container-fluid d-flex justify-content-center align-items-center" style={{width: '100vw', height: '100vh'}}>
+            <h3>Please Wait...!</h3>
         </div>
     )
 }
